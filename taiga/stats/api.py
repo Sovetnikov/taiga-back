@@ -41,6 +41,7 @@ class SystemStatsViewSet(BaseStatsViewSet):
     permission_classes = (permissions.SystemStatsPermission,)
 
     def list(self, request, **kwargs):
+        self.check_permissions(request)
         stats = OrderedDict()
         stats["users"] = services.get_users_public_stats()
         stats["projects"] = services.get_projects_public_stats()
@@ -52,6 +53,7 @@ class DiscoverStatsViewSet(BaseStatsViewSet):
     permission_classes = (permissions.DiscoverStatsPermission,)
 
     def list(self, request, **kwargs):
+        self.check_permissions(request)
         stats = OrderedDict()
         stats["projects"] = services.get_projects_discover_stats(user=request.user)
         return response.Ok(stats)

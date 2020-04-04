@@ -16,8 +16,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from taiga.base.api.permissions import TaigaResourcePermission, AllowAny
+from taiga.base.api.permissions import TaigaResourcePermission, AllowAny, IsAuthenticated
 
 
 class LocalesPermission(TaigaResourcePermission):
-    global_perms = AllowAny()
+    global_perms = IsAuthenticated()

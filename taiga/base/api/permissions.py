@@ -24,7 +24,8 @@ from taiga.permissions.services import user_has_perm, is_project_admin
 from django.apps import apps
 
 from django.utils.translation import ugettext as _
-
+import logging
+logger = logging.getLogger(__name__)
 
 ######################################################################
 # Base permissiones definition
@@ -48,6 +49,7 @@ class ResourcePermission(object):
         self.view = view
 
     def check_permissions(self, action:str, obj:object=None):
+        logger.debug('{self.__class__} for action={action}, obj={obj}'.format(**locals()))
         permset = getattr(self, "{}_perms".format(action))
 
         if isinstance(permset, (list, tuple)):
@@ -70,6 +72,7 @@ class ResourcePermission(object):
         if self.enought_perms:
             permset = (self.enought_perms | permset)
 
+        logger.debug('Final permset {permset}'.format(**locals()))
         return permset.check_permissions(request=self.request,
                                          view=self.view,
                                          obj=obj)
@@ -114,6 +117,9 @@ class Not(PermissionOperator):
         component = self.components[0]
         return (not component.check_permissions(*args, **kwargs))
 
+    def __str__(self):
+        return 'Not('+str(self.components[0])+')'
+
 
 class Or(PermissionOperator):
     """
@@ -130,6 +136,9 @@ class Or(PermissionOperator):
 
         return valid
 
+    def __str__(self):
+        return 'Or('+','.join(str(x) for x in self.components)+')'
+
 
 class And(PermissionOperator):
     """
@@ -145,6 +154,9 @@ class And(PermissionOperator):
                 break
 
         return valid
+
+    def __str__(self):
+        return 'And('+','.join(str(x) for x in self.components)+')'
 
 
 ######################################################################
@@ -164,7 +176,6 @@ class DenyAll(PermissionComponent):
 class IsAuthenticated(PermissionComponent):
     def check_permissions(self, request, view, obj=None):
         return request.user and request.user.is_authenticated()
-
 
 class IsSuperUser(PermissionComponent):
     def check_permissions(self, request, view, obj=None):

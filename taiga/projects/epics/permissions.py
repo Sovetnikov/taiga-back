@@ -30,9 +30,9 @@ class EpicPermission(TaigaResourcePermission):
     update_perms = CommentAndOrUpdatePerm('modify_epic', 'comment_epic')
     partial_update_perms = CommentAndOrUpdatePerm('modify_epic', 'comment_epic')
     destroy_perms = HasProjectPerm('delete_epic')
-    list_perms = AllowAny()
-    filters_data_perms = AllowAny()
-    csv_perms = AllowAny()
+    list_perms = IsAuthenticated()
+    filters_data_perms = IsAuthenticated()
+    csv_perms = IsAuthenticated()
     bulk_create_perms = HasProjectPerm('add_epic')
     upvote_perms = IsAuthenticated() & HasProjectPerm('view_epics')
     downvote_perms = IsAuthenticated() & HasProjectPerm('view_epics')
@@ -48,7 +48,7 @@ class EpicRelatedUserStoryPermission(TaigaResourcePermission):
     update_perms = HasProjectPerm('modify_epic')
     partial_update_perms = HasProjectPerm('modify_epic')
     destroy_perms = HasProjectPerm('modify_epic')
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_create_perms = HasProjectPerm('modify_epic')
 
 

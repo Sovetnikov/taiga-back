@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from taiga.base.api.permissions import TaigaResourcePermission
+from taiga.base.api.permissions import TaigaResourcePermission, IsAuthenticated
 from taiga.base.api.permissions import HasProjectPerm
 from taiga.base.api.permissions import IsProjectAdmin
 from taiga.base.api.permissions import AllowAny
@@ -35,7 +35,7 @@ class EpicCustomAttributePermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -47,7 +47,7 @@ class UserStoryCustomAttributePermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -59,7 +59,7 @@ class TaskCustomAttributePermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -71,7 +71,7 @@ class IssueCustomAttributePermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 

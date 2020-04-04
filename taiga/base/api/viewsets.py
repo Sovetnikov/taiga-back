@@ -49,7 +49,8 @@ from django.utils.translation import ugettext as _
 from . import views
 from . import mixins
 from . import generics
-
+import logging
+logger = logging.getLogger(__name__)
 
 class ViewSetMixin(object):
     """
@@ -129,8 +130,10 @@ class ViewSetMixin(object):
         return request
 
     def check_permissions(self, request, action:str=None, obj:object=None):
+        logger.debug('check_permissions for action={action}, obj={obj}'.format(**locals()))
         if action is None:
             action = self.action
+            logger.debug('Gettings action from self.action={self.action}'.format(**locals()))
         return super().check_permissions(request, action=action, obj=obj)
 
 

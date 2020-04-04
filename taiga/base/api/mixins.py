@@ -120,6 +120,7 @@ class ListModelMixin:
     empty_error = "Empty list and '%(class_name)s.allow_empty' is False."
 
     def list(self, request, *args, **kwargs):
+        self.check_permissions(request, 'list')
         self.object_list = self.filter_queryset(self.get_queryset())
 
         # Default is to allow empty querysets.  This can be altered by setting

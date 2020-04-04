@@ -67,7 +67,8 @@ from taiga.base.response import Ok
 from taiga.base.response import NotFound
 from taiga.base.response import Forbidden
 from taiga.base.utils.iterators import as_tuple
-
+import logging
+logger = logging.getLogger(__name__)
 
 
 def get_view_name(view_cls, suffix=None):

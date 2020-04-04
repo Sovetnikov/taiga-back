@@ -16,17 +16,17 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from taiga.base.api.permissions import TaigaResourcePermission, AllowAny, IsSuperUser
+from taiga.base.api.permissions import TaigaResourcePermission, AllowAny, IsSuperUser, IsAuthenticated
 from taiga.permissions.permissions import HasProjectPerm, IsProjectAdmin
 
 
 class UserTimelinePermission(TaigaResourcePermission):
     enought_perms = IsSuperUser()
-    global_perms = None
-    retrieve_perms = AllowAny()
+    global_perms = IsAuthenticated()
+    retrieve_perms = IsAuthenticated()
 
 
 class ProjectTimelinePermission(TaigaResourcePermission):
     enought_perms = IsProjectAdmin() | IsSuperUser()
-    global_perms = None
+    global_perms = IsAuthenticated()
     retrieve_perms = HasProjectPerm('view_project')

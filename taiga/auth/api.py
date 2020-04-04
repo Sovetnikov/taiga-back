@@ -92,8 +92,6 @@ class AuthViewSet(viewsets.ViewSet):
         if accepted_terms in (None, False):
             raise exc.BadRequest(_("You must accept our terms of service and privacy policy"))
 
-        self.check_permissions(request, 'register', None)
-
         type = request.DATA.get("type", None)
         if type == "public":
             return self._public_register(request)

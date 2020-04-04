@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from taiga.base.api.permissions import (TaigaResourcePermission, IsProjectAdmin,
-                                        AllowAny, PermissionComponent)
+                                        AllowAny, PermissionComponent, IsAuthenticated)
 
 from taiga.permissions.services import is_project_admin
 
@@ -33,11 +33,11 @@ class WebhookPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     test_perms = IsProjectAdmin()
 
 
 class WebhookLogPermission(TaigaResourcePermission):
     retrieve_perms = IsWebhookProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     resend_perms = IsWebhookProjectAdmin()

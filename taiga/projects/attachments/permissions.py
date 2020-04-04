@@ -18,7 +18,7 @@
 
 
 from taiga.base.api.permissions import (TaigaResourcePermission, HasProjectPerm,
-                                        AllowAny, PermissionComponent)
+                                        AllowAny, PermissionComponent, IsAuthenticated)
 
 
 class IsAttachmentOwnerPerm(PermissionComponent):
@@ -40,7 +40,7 @@ class EpicAttachmentPermission(TaigaResourcePermission):
     update_perms = HasProjectPerm('modify_epic') | IsAttachmentOwnerPerm()
     partial_update_perms = HasProjectPerm('modify_epic') | IsAttachmentOwnerPerm()
     destroy_perms = HasProjectPerm('modify_epic') | IsAttachmentOwnerPerm()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
 
 
 class UserStoryAttachmentPermission(TaigaResourcePermission):
@@ -49,7 +49,7 @@ class UserStoryAttachmentPermission(TaigaResourcePermission):
     update_perms = HasProjectPerm('modify_us') | IsAttachmentOwnerPerm()
     partial_update_perms = HasProjectPerm('modify_us') | IsAttachmentOwnerPerm()
     destroy_perms = HasProjectPerm('modify_us') | IsAttachmentOwnerPerm()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
 
 
 class TaskAttachmentPermission(TaigaResourcePermission):
@@ -58,7 +58,7 @@ class TaskAttachmentPermission(TaigaResourcePermission):
     update_perms = HasProjectPerm('modify_task') | IsAttachmentOwnerPerm()
     partial_update_perms = HasProjectPerm('modify_task') | IsAttachmentOwnerPerm()
     destroy_perms = HasProjectPerm('modify_task') | IsAttachmentOwnerPerm()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
 
 
 class IssueAttachmentPermission(TaigaResourcePermission):
@@ -67,7 +67,7 @@ class IssueAttachmentPermission(TaigaResourcePermission):
     update_perms = HasProjectPerm('modify_issue') | IsAttachmentOwnerPerm()
     partial_update_perms = HasProjectPerm('modify_issue') | IsAttachmentOwnerPerm()
     destroy_perms = HasProjectPerm('modify_issue') | IsAttachmentOwnerPerm()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
 
 
 class WikiAttachmentPermission(TaigaResourcePermission):
@@ -76,7 +76,7 @@ class WikiAttachmentPermission(TaigaResourcePermission):
     update_perms = HasProjectPerm('modify_wiki_page') | IsAttachmentOwnerPerm()
     partial_update_perms = HasProjectPerm('modify_wiki_page') | IsAttachmentOwnerPerm()
     destroy_perms = HasProjectPerm('modify_wiki_page') | IsAttachmentOwnerPerm()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
 
 
 class RawAttachmentPerm(PermissionComponent):

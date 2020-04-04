@@ -364,7 +364,7 @@ LOGGING = {
         "console":{
             "level":"DEBUG",
             "class":"logging.StreamHandler",
-            "formatter": "simple",
+            "formatter": "complete",
         },
         "mail_admins": {
             "level": "ERROR",

@@ -33,24 +33,24 @@ class IsTheSameUser(PermissionComponent):
 class UserPermission(TaigaResourcePermission):
     enought_perms = IsSuperUser()
     global_perms = None
-    retrieve_perms = AllowAny()
+    retrieve_perms = IsAuthenticated()
     by_username_perms = retrieve_perms
     update_perms = IsTheSameUser()
     partial_update_perms = IsTheSameUser()
     destroy_perms = IsTheSameUser()
-    list_perms = AllowAny()
-    stats_perms = AllowAny()
-    password_recovery_perms = AllowAny()
-    change_password_from_recovery_perms = AllowAny()
+    list_perms = IsAuthenticated()
+    stats_perms = IsAuthenticated()
+    password_recovery_perms = IsAuthenticated()
+    change_password_from_recovery_perms = IsAuthenticated()
     change_password_perms = IsAuthenticated()
     change_avatar_perms = IsAuthenticated()
     me_perms = IsAuthenticated()
     remove_avatar_perms = IsAuthenticated()
-    change_email_perms = AllowAny()
-    contacts_perms = AllowAny()
-    liked_perms = AllowAny()
-    voted_perms = AllowAny()
-    watched_perms = AllowAny()
+    change_email_perms = IsAuthenticated()
+    contacts_perms = IsAuthenticated()
+    liked_perms = IsAuthenticated()
+    voted_perms = IsAuthenticated()
+    watched_perms = IsAuthenticated()
 
 
 class RolesPermission(TaigaResourcePermission):
@@ -59,4 +59,4 @@ class RolesPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()

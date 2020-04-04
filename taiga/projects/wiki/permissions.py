@@ -32,8 +32,8 @@ class WikiPagePermission(TaigaResourcePermission):
     update_perms = CommentAndOrUpdatePerm('modify_wiki_page', 'comment_wiki_page')
     partial_update_perms = CommentAndOrUpdatePerm('modify_wiki_page', 'comment_wiki_page')
     destroy_perms = HasProjectPerm('delete_wiki_page')
-    list_perms = AllowAny()
-    render_perms = AllowAny()
+    list_perms = IsAuthenticated()
+    render_perms = IsAuthenticated()
     watch_perms = IsAuthenticated() & HasProjectPerm('view_wiki_pages')
     unwatch_perms = IsAuthenticated() & HasProjectPerm('view_wiki_pages')
 
@@ -53,5 +53,5 @@ class WikiLinkPermission(TaigaResourcePermission):
     update_perms = HasProjectPerm('modify_wiki_link')
     partial_update_perms = HasProjectPerm('modify_wiki_link')
     destroy_perms = HasProjectPerm('delete_wiki_link')
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     create_wiki_page_perms = HasProjectPerm('add_wiki_page')

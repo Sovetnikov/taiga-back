@@ -49,6 +49,7 @@ class CanLeaveProject(PermissionComponent):
 
 
 class ProjectPermission(TaigaResourcePermission):
+    global_perms = IsAuthenticated()
     retrieve_perms = HasProjectPerm('view_project')
     by_slug_perms = HasProjectPerm('view_project')
     create_perms = IsAuthenticated()
@@ -56,7 +57,7 @@ class ProjectPermission(TaigaResourcePermission):
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
     modules_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     change_logo_perms = IsProjectAdmin()
     remove_logo_perms = IsProjectAdmin()
     stats_perms = HasProjectPerm('view_project')
@@ -110,7 +111,7 @@ class MembershipPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_create_perms = IsProjectAdmin()
     resend_invitation_perms = IsProjectAdmin()
 
@@ -123,7 +124,7 @@ class EpicStatusPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -135,7 +136,7 @@ class PointsPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -145,7 +146,7 @@ class UserStoryStatusPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -155,7 +156,7 @@ class UserStoryDueDatePermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -167,7 +168,7 @@ class TaskStatusPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -177,7 +178,7 @@ class TaskDueDatePermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 # Issues
@@ -188,7 +189,7 @@ class SeverityPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -198,7 +199,7 @@ class PriorityPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -208,7 +209,7 @@ class IssueStatusPermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -218,7 +219,7 @@ class IssueTypePermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
@@ -228,16 +229,16 @@ class IssueDueDatePermission(TaigaResourcePermission):
     update_perms = IsProjectAdmin()
     partial_update_perms = IsProjectAdmin()
     destroy_perms = IsProjectAdmin()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()
     bulk_update_order_perms = IsProjectAdmin()
 
 
 # Project Templates
 
 class ProjectTemplatePermission(TaigaResourcePermission):
-    retrieve_perms = AllowAny()
+    retrieve_perms = IsAuthenticated()
     create_perms = IsSuperUser()
     update_perms = IsSuperUser()
     partial_update_perms = IsSuperUser()
     destroy_perms = IsSuperUser()
-    list_perms = AllowAny()
+    list_perms = IsAuthenticated()

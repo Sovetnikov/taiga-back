@@ -21,7 +21,7 @@ from taiga.base.api.permissions import TaigaResourcePermission, IsAuthenticated
 
 class ImporterPermission(TaigaResourcePermission):
     enought_perms = IsAuthenticated()
-    global_perms = None
+    global_perms = IsAuthenticated()
     auth_url_perms = IsAuthenticated()
     authorize_perms = IsAuthenticated()
     list_users_perms = IsAuthenticated()
